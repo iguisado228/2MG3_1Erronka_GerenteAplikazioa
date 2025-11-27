@@ -14,9 +14,10 @@ import java.sql.*;
 import com.gestapp.hasheadorea.Hasheadorea;
 
 import javafx.stage.Stage;
+import com.gestapp.konexioa.Konexioa;
 
 
-public class loginController {
+public class LoginController {
 
     @FXML
     private TextField tfErabiltzailea;
@@ -46,7 +47,7 @@ public class loginController {
             return;
         }
 
-        try (Connection conn = konexioa.getConnection()) {
+        try (Connection conn = Konexioa.getConnection()) {
 
 
             String hasheadorea = Hasheadorea.pasahitzaHasheatu(pasahitza);

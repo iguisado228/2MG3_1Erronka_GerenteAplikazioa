@@ -11,4 +11,6 @@ module com.example.gestapp {
     opens com.gestapp.controllers to javafx.fxml;
     exports com.gestapp.hasheadorea;
     opens com.gestapp.hasheadorea to javafx.fxml;
+    exports com.gestapp.konexioa;
+    opens com.gestapp.konexioa to javafx.fxml;
 }
