@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ImageInput?>
 <?import javafx.scene.image.Image?>
@@ -9,7 +10,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.control.PasswordField?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="376.0" prefWidth="504.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gestapp.controllers.loginController">
     <children>
       <Label fx:id="labelErabiltzailea" layoutX="35.0" layoutY="100.0" text="ERABILTZAILEA" AnchorPane.topAnchor="100.0">
@@ -34,7 +34,7 @@
          <effect>
             <ImageInput>
                <source>
-                  <Image url="file:/C:/Users/hodei/OneDrive%20-%20Goierri%20Eskola/Escritorio/1_ERRONKA(2MG)/2MG3_1Erronka/Gestio_aplikazioa/teknobide_logoa.png" />
+                  <Image url="@teknobide_logoa.png" />
                </source>
             </ImageInput>
          </effect>
