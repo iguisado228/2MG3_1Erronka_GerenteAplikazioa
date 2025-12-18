@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.gestapp.controllers.ErreserbakGehituController">
+
+    <top>
+        <Label text="Erreserba Gehitu"
+               style="-fx-font-size: 20px; -fx-font-weight: bold;"
+               BorderPane.alignment="CENTER" padding="10"/>
+    </top>
+
+    <center>
+        <GridPane hgap="15" vgap="12" padding="20">
+            <columnConstraints>
+                <ColumnConstraints halignment="RIGHT"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+            </columnConstraints>
+
+            <Label text="Bezero Izena:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtBezeroIzena" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+            <Label text="Telefonoa:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtTelefonoa" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+            <Label text="Pertsona Kopurua:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtPertsonak" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+            <Label text="Eguna:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <DatePicker fx:id="dpEguna" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+            <Label text="Ordua (HH:MM):" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtOrdua" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+            <Label text="Prezio Totala:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtPrezioa" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+            <Label text="Faktura Ruta:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtFaktura" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+
+            <Label text="Langile ID:" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtLangileId" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+
+            <Label text="Mahai ID:" GridPane.rowIndex="8" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtMahaiId" GridPane.rowIndex="8" GridPane.columnIndex="1"/>
+
+        </GridPane>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER" spacing="20" padding="15">
+            <Button text="Gorde" onAction="#gorde" prefWidth="120"/>
+            <Button text="Itzuli" onAction="#atzera" prefWidth="120"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.gestapp.controllers.ErreserbakController">
+
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="10" padding="10">
+            <Button text="⟵ Atzera" onAction="#atzera" />
+            <Label text="Erreserbak" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+        </HBox>
+    </top>
+
+
+    <center>
+        <TableView fx:id="erreserbak">
+            <columns>
+
+                <TableColumn fx:id="id" text="ID" prefWidth="60"/>
+
+                <TableColumn fx:id="bezeroIzena" text="Bezero Izena" prefWidth="150"/>
+
+                <TableColumn fx:id="telefonoa" text="Telefonoa" prefWidth="120"/>
+
+                <TableColumn fx:id="pertsonak" text="Pertsonak" prefWidth="100"/>
+
+                <TableColumn fx:id="eguna" text="Eguna" prefWidth="120"/>
+
+                <TableColumn fx:id="ordua" text="Ordua" prefWidth="120"/>
+
+                <TableColumn fx:id="prezioTotala" text="Prezio Totala" prefWidth="120"/>
+
+                <TableColumn fx:id="fakturaRuta" text="Faktura Ruta" prefWidth="180"/>
+
+                <TableColumn fx:id="langileakId" text="Langilea ID" prefWidth="100"/>
+
+                <TableColumn fx:id="mahaiakId" text="Mahaia ID" prefWidth="100"/>
+
+            </columns>
+        </TableView>
+    </center>
+
+
+    <bottom>
+        <HBox alignment="CENTER" spacing="20" padding="15">
+            <Button text="Gehitu" style="-fx-font-size: 14;" prefWidth="120" onAction="#gehitu"/>
+            <Button text="Editatu" style="-fx-font-size: 14;" prefWidth="120" onAction="#editatu"/>
+            <Button text="Ezabatu" style="-fx-font-size: 14;" prefWidth="120" onAction="#ezabatu"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>
