@@ -28,7 +28,7 @@ public class LoginController {
     @FXML
     private Button btnLogin;
 
-    // Alert helper
+
     private void alerta(Alert.AlertType type, String title, String message) {
         Alert alert = new Alert(type);
         alert.setTitle(title);

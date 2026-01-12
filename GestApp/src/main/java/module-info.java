@@ -4,8 +4,11 @@ module com.example.gestapp {
 
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
+    requires java.desktop;
+    requires javafx.graphics;
+    requires javafx.base;
 
-    // Paquetes principales
+
     opens com.gestapp.main to javafx.fxml;
     exports com.gestapp.main;
 

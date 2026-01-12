@@ -16,6 +16,18 @@
             <Button fx:id="btnErabiltzaileak" text="ERABILTZAILEAK"
                     onAction="#onbtnErabiltzaileak"
                     style="-fx-background-color: #2ECC71; -fx-font-weight: bold; -fx-font-family: 'Segoe UI'; -fx-font-size: 15;" />
+            <Button fx:id="btnErreserbak" text="ERRESERBAK"
+                    onAction="#onbtnErreserbak"
+                    style="-fx-background-color: #2ECC71; -fx-font-weight: bold; -fx-font-family: 'Segoe UI'; -fx-font-size: 15;" />
+            <Button fx:id="btnProduktuak" text="PRODUKTUAK"
+                    onAction="#onbtnProduktuak"
+                    style="-fx-background-color: #2ECC71; -fx-font-weight: bold; -fx-font-family: 'Segoe UI'; -fx-font-size: 15;" />
+            <Button fx:id="btnMahaiak" text="MAHAIAK"
+                    onAction="#onbtnMahaiak"
+                    style="-fx-background-color: #2ECC71; -fx-font-weight: bold; -fx-font-family: 'Segoe UI'; -fx-font-size: 15;" />
+            <Button fx:id="btnTxandak" text="TXANDAK"
+                    onAction="#onbtnTxandak"
+                    style="-fx-background-color: #2ECC71; -fx-font-weight: bold; -fx-font-family: 'Segoe UI'; -fx-font-size: 15;" />
             <Pane VBox.vgrow="ALWAYS" />
             <Button fx:id="btnIrten" text="IRTEN"
                     onAction="#onbtnIrten"

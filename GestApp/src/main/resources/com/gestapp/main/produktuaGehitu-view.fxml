@@ -1,27 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/8"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.gestapp.controllers.ProduktuakGehituController">
+            fx:controller="com.gestapp.controllers.ProduktuakGehituController"
+            style="-fx-background-color: #f4f6f9;">
 
-    <VBox spacing="10" alignment="CENTER" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10">
+    <VBox spacing="20" alignment="CENTER" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="50" AnchorPane.rightAnchor="50">
 
-        <TextField fx:id="txtIzena" promptText="Izena"/>
-        <TextField fx:id="txtPrezioa" promptText="Prezioa"/>
-        <TextField fx:id="txtMota" promptText="Mota"/>
-        <TextField fx:id="txtStock" promptText="Stock"/>
 
-        <HBox spacing="15">
-            <Button text="Gorde" onAction="#gorde"/>
-            <Button text="Utzi" onAction="#atzera"/>
+        <Label text="📦 Gehitu Produktua"
+               style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;">
+            <font>
+                <Font name="Segoe UI" size="24.0" />
+            </font>
+        </Label>
+
+
+        <TextField fx:id="txtIzena" promptText="Izena" style="-fx-padding: 8; -fx-font-size: 14; -fx-background-radius: 5;"/>
+        <TextField fx:id="txtPrezioa" promptText="Prezioa" style="-fx-padding: 8; -fx-font-size: 14; -fx-background-radius: 5;"/>
+        <TextField fx:id="txtMota" promptText="Mota" style="-fx-padding: 8; -fx-font-size: 14; -fx-background-radius: 5;"/>
+        <TextField fx:id="txtStock" promptText="Stock" style="-fx-padding: 8; -fx-font-size: 14; -fx-background-radius: 5;"/>
+
+
+        <HBox spacing="15" alignment="CENTER">
+            <Button text="💾 Gorde" onAction="#gorde"
+                    style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14; -fx-background-radius: 5; -fx-padding: 8 20;"/>
+            <Button text="❌ Utzi" onAction="#atzera"
+                    style="-fx-background-color: #7f8c8d; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14; -fx-background-radius: 5; -fx-padding: 8 20;"/>
         </HBox>
 
     </VBox>
 </AnchorPane>
-

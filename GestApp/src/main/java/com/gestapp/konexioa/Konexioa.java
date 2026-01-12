@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class Konexioa {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/erronka";
+    private static final String URL = "jdbc:mysql://localhost:3306/2mg3_1erronka";
     private static final String USER = "root";
     private static final String PASSWORD = "1MG2024";
 

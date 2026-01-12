@@ -96,12 +96,16 @@ public class ProduktuakController {
         }
     }
 
+
     @FXML
     private void ezabatu() {
         Produktua aukeratuta = produktuak.getSelectionModel().getSelectedItem();
 
+        Stage owner = (Stage) produktuak.getScene().getWindow();
+
         if (aukeratuta == null) {
             Alert alerta = new Alert(Alert.AlertType.WARNING);
+            alerta.initOwner(owner);
             alerta.setTitle("Ezabatu");
             alerta.setHeaderText(null);
             alerta.setContentText("Ez da produkturik hautatu.");
@@ -120,10 +124,11 @@ public class ProduktuakController {
             datuak();
 
             Alert ok = new Alert(Alert.AlertType.INFORMATION);
+            ok.initOwner(owner);
             ok.setTitle("Ezabatu");
             ok.setHeaderText(null);
             ok.setContentText("Produktua ongi ezabatu da.");
-            ok.show();
+            ok.showAndWait();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -134,12 +139,15 @@ public class ProduktuakController {
     private void editatu() {
         Produktua p = produktuak.getSelectionModel().getSelectedItem();
 
+        Stage owner = (Stage) produktuak.getScene().getWindow();
+
         if (p == null) {
             Alert alerta = new Alert(Alert.AlertType.WARNING);
+            alerta.initOwner(owner);
             alerta.setTitle("Editatu");
             alerta.setHeaderText(null);
             alerta.setContentText("Ez da produkturik hautatu.");
-            alerta.show();
+            alerta.showAndWait();
             return;
         }
 
@@ -153,7 +161,7 @@ public class ProduktuakController {
             Stage stage = new Stage();
             stage.setTitle("Produktua Editatu");
             stage.setScene(new Scene(root));
-            stage.initOwner(produktuak.getScene().getWindow());
+            stage.initOwner(owner);
             stage.setResizable(false);
             stage.showAndWait();
 

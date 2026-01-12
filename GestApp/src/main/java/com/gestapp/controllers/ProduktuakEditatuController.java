@@ -3,6 +3,7 @@ package com.gestapp.controllers;
 import com.gestapp.konexioa.Konexioa;
 import com.gestapp.modeloa.Produktua;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -40,12 +41,31 @@ public class ProduktuakEditatuController {
             pstmt.setInt(4, Integer.parseInt(txtStock.getText()));
             pstmt.setInt(5, produktua.getId());
 
-            pstmt.executeUpdate();
+            int rows = pstmt.executeUpdate();
 
-            Stage stage = (Stage) txtIzena.getScene().getWindow();
-            stage.close();
+            Alert alert;
+            if (rows > 0) {
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Ondo");
+                alert.setHeaderText(null);
+                alert.setContentText("Produktua ondo eguneratu da");
+                alert.showAndWait();
+                ((Stage) txtIzena.getScene().getWindow()).close();
+            } else {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Errorea");
+                alert.setHeaderText(null);
+                alert.setContentText("Ezin izan da produktua eguneratu");
+                alert.showAndWait();
+            }
 
-        } catch (SQLException e) { e.printStackTrace(); }
+        } catch (SQLException | NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Errorea");
+            alert.setHeaderText(null);
+            alert.setContentText("Errorea eguneratzean");
+            alert.showAndWait();
+        }
     }
 
     @FXML

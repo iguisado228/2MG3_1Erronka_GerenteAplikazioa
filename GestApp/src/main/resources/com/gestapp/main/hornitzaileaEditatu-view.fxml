@@ -6,26 +6,25 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/8"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.gestapp.controllers.ProduktuakEditatuController"
+            fx:controller="com.gestapp.controllers.HornitzaileakEditatuController"
             style="-fx-background-color: #f4f6f9;">
 
     <VBox spacing="20" alignment="CENTER" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="50" AnchorPane.rightAnchor="50">
 
-        <!-- Encabezado -->
-        <Label text="✏️ Editatu Produktua"
+
+        <Label text="✏️ Hornitzailea editatu"
                style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;">
             <font>
                 <Font name="Segoe UI" size="24.0" />
             </font>
         </Label>
 
-        <!-- Campos de texto -->
-        <TextField fx:id="txtIzena" promptText="Izena" style="-fx-padding: 8; -fx-font-size: 14; -fx-background-radius: 5;"/>
-        <TextField fx:id="txtPrezioa" promptText="Prezioa" style="-fx-padding: 8; -fx-font-size: 14; -fx-background-radius: 5;"/>
-        <TextField fx:id="txtMota" promptText="Mota" style="-fx-padding: 8; -fx-font-size: 14; -fx-background-radius: 5;"/>
-        <TextField fx:id="txtStock" promptText="Stock" style="-fx-padding: 8; -fx-font-size: 14; -fx-background-radius: 5;"/>
 
-        <!-- Botones -->
+        <TextField fx:id="txtIzena" promptText="Izena" style="-fx-padding: 8; -fx-font-size: 14; -fx-background-radius: 5;"/>
+        <TextField fx:id="txtKontaktua" promptText="Kontaktua" style="-fx-padding: 8; -fx-font-size: 14; -fx-background-radius: 5;"/>
+        <TextField fx:id="txtHelbidea" promptText="Helbidea" style="-fx-padding: 8; -fx-font-size: 14; -fx-background-radius: 5;"/>
+
+
         <HBox spacing="15" alignment="CENTER">
             <Button text="💾 Gorde" onAction="#gorde"
                     style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14; -fx-background-radius: 5; -fx-padding: 8 20;"/>

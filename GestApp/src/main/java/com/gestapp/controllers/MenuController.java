@@ -11,7 +11,8 @@ import javafx.scene.control.Button;
 import java.io.IOException;
 
 public class MenuController {
-
+@FXML
+    public Button btnErreserbak;
     @FXML
     private BorderPane rootDashboard;
 
@@ -38,6 +39,54 @@ public class MenuController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    
+    @FXML
+    public void onbtnErreserbak(javafx.event.ActionEvent actionEvent) {
+        try{
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/com/gestapp/main/erreserba-view.fxml")
+            );
+            Parent erreserbaView = loader.load();
+            contentArea.getChildren().setAll(erreserbaView);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void onbtnProduktuak(javafx.event.ActionEvent actionEvent) {
+
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/com/gestapp/main/produktua-view.fxml")
+            );
+            Parent produktuaView = loader.load();
+            contentArea.getChildren().setAll(produktuaView);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void onbtnMahaiak(javafx.event.ActionEvent actionEvent) {
+        try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gestapp/main/mahaia-view.fxml"));
+            Parent mahaiaView = loader.load();
+            contentArea.getChildren().setAll(mahaiaView);
+        }catch (IOException e){e.printStackTrace();}
+    }
+
+    @FXML
+    public void onbtnTxandak(javafx.event.ActionEvent actionEvent) {
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gestapp/main/txanda-view.fxml"));
+            Parent txandaView = loader.load();
+            contentArea.getChildren().setAll(txandaView);
+        }catch (IOException e){e.printStackTrace();}
     }
 
     @FXML

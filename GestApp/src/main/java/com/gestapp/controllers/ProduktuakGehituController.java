@@ -2,6 +2,7 @@ package com.gestapp.controllers;
 
 import com.gestapp.konexioa.Konexioa;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -19,6 +20,7 @@ public class ProduktuakGehituController {
     @FXML
     private void gorde() {
         String sql = "INSERT INTO produktuak (izena, prezioa, mota, stock) VALUES (?, ?, ?, ?)";
+        Stage owner = (Stage) txtIzena.getScene().getWindow();
 
         try (Connection conn = Konexioa.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -30,10 +32,31 @@ public class ProduktuakGehituController {
 
             pstmt.executeUpdate();
 
-            Stage stage = (Stage) txtIzena.getScene().getWindow();
-            stage.close();
+            Alert ok = new Alert(Alert.AlertType.INFORMATION);
+            ok.initOwner(owner);
+            ok.setTitle("Ongi atera da");
+            ok.setHeaderText(null);
+            ok.setContentText("Produktua ongi gorde da.");
+            ok.showAndWait();
 
-        } catch (SQLException e) { e.printStackTrace(); }
+            owner.close();
+
+        } catch (NumberFormatException e) {
+            Alert errorea = new Alert(Alert.AlertType.ERROR);
+            errorea.initOwner(owner);
+            errorea.setTitle("Errorea");
+            errorea.setHeaderText(null);
+            errorea.setContentText("Datuak falta dira betetzeko.");
+            errorea.showAndWait();
+        } catch (SQLException e) {
+            Alert errorea = new Alert(Alert.AlertType.ERROR);
+            errorea.initOwner(owner);
+            errorea.setTitle("Errorea");
+            errorea.setHeaderText(null);
+            errorea.setContentText("Errorea gertatu da produktua gordetzean.");
+            errorea.showAndWait();
+            e.printStackTrace();
+        }
     }
 
     @FXML
