@@ -22,7 +22,7 @@ public class HornitzaileakGehituController {
 
     @FXML
     private void gorde(){
-        String sql = "INSERT INTO hornitzaileak (izena, kontatua, helbidea) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO hornitzaileak (izena, kontaktua, helbidea) VALUES (?, ?, ?)";
         Stage owner = (Stage) txtIzena.getScene().getWindow();
 
         try (Connection conn = Konexioa.getConnection();

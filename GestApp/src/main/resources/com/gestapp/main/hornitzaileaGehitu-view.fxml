@@ -7,27 +7,63 @@
 <AnchorPane xmlns="http://javafx.com/javafx/8"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.gestapp.controllers.HornitzaileakGehituController"
-            style="-fx-background-color: #f4f6f9;">
+            style="-fx-background-color: linear-gradient(to bottom, #eef2f7, #dfe6ee);">
 
-    <VBox spacing="20" alignment="CENTER"
-          AnchorPane.topAnchor="20"
-          AnchorPane.leftAnchor="50"
-          AnchorPane.rightAnchor="50">
+    <VBox spacing="25"
+          alignment="CENTER"
+          AnchorPane.topAnchor="40"
+          AnchorPane.leftAnchor="60"
+          AnchorPane.rightAnchor="60"
+          style="-fx-background-color: white;
+                 -fx-padding: 30;
+                 -fx-background-radius: 15;
+                 -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 15, 0, 0, 5);">
 
         <Label text="Hornitzailea gehitu"
-               style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;">
+               style="-fx-font-size: 28px;
+                      -fx-font-weight: bold;
+                      -fx-text-fill: #2c3e50;">
             <font>
-                <Font name="Segoe UI" size="24.0"/>
+                <Font name="Segoe UI Semibold" size="28.0"/>
             </font>
         </Label>
 
-        <TextField fx:id="txtIzena" promptText="Izena"/>
-        <TextField fx:id="txtKontaktua" promptText="Kontaktua"/>
-        <TextField fx:id="txtHelbidea" promptText="Helbidea"/>
+        <TextField fx:id="txtIzena"
+                   promptText="Izena"
+                   style="-fx-font-size: 15px;
+                          -fx-pref-height: 40;
+                          -fx-background-radius: 8;"/>
 
-        <HBox spacing="15" alignment="CENTER">
-            <Button text="💾 Gorde" onAction="#gorde"/>
-            <Button text="❌ Utzi" onAction="#atzera"/>
+        <TextField fx:id="txtKontaktua"
+                   promptText="Kontaktua"
+                   style="-fx-font-size: 15px;
+                          -fx-pref-height: 40;
+                          -fx-background-radius: 8;"/>
+
+        <TextField fx:id="txtHelbidea"
+                   promptText="Helbidea"
+                   style="-fx-font-size: 15px;
+                          -fx-pref-height: 40;
+                          -fx-background-radius: 8;"/>
+
+        <HBox spacing="20" alignment="CENTER">
+            <Button text="💾 Gorde"
+                    onAction="#gorde"
+                    style="-fx-font-size: 14px;
+                           -fx-background-color: #2ecc71;
+                           -fx-text-fill: white;
+                           -fx-background-radius: 10;
+                           -fx-pref-width: 140;
+                           -fx-pref-height: 40;"/>
+
+            <Button text="❌ Utzi"
+                    onAction="#atzera"
+                    style="-fx-font-size: 14px;
+                           -fx-background-color: #e74c3c;
+                           -fx-text-fill: white;
+                           -fx-background-radius: 10;
+                           -fx-pref-width: 140;
+                           -fx-pref-height: 40;"/>
         </HBox>
 
     </VBox>

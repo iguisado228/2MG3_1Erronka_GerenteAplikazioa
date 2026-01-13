@@ -90,6 +90,51 @@ public class MenuController {
     }
 
     @FXML
+    public void onbtnHornitzaileak(javafx.event.ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gestapp/main/hornitzailea-view.fxml"));
+            Parent hornitzaileaView = loader.load();
+            contentArea.getChildren().setAll(hornitzaileaView);
+        }catch (IOException e){e.printStackTrace();}
+    }
+
+    @FXML
+    public void onbtnOsagaiak(javafx.event.ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gestapp/main/osagaia-view.fxml"));
+            Parent osagaiaView = loader.load();
+            contentArea.getChildren().setAll(osagaiaView);
+        }catch (IOException e){e.printStackTrace();}
+    }
+
+    @FXML
+    public void onbtnMaterialak(javafx.event.ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new  FXMLLoader(getClass().getResource("/com/gestapp/main/materiala-view.fxml"));
+            Parent materialaView = loader.load();
+            contentArea.getChildren().setAll(materialaView);
+        }catch (IOException e){e.printStackTrace();}
+    }
+
+    @FXML
+    public void onbtnGordetzekoElementuak(javafx.event.ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gestapp/main/gordetzekoElementua-view.fxml"));
+            Parent gordeView = loader.load();
+            contentArea.getChildren().setAll(gordeView);
+        }catch (IOException e){e.printStackTrace();}
+    }
+
+    @FXML
+    public void onbtnEskariak(javafx.event.ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gestapp/main/eskaria-view.fxml"));
+            Parent eskariaView = loader.load();
+            contentArea.getChildren().setAll(eskariaView);
+        }catch (IOException e){e.printStackTrace();}
+    }
+
+    @FXML
     public void onbtnIrten(javafx.event.ActionEvent actionEvent) {
         Stage stage = (Stage) btnIrten.getScene().getWindow();
         stage.close();

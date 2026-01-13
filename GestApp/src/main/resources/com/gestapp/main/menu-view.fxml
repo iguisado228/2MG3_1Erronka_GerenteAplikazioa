@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
@@ -12,26 +11,54 @@
             fx:controller="com.gestapp.controllers.MenuController">
 
     <left>
-        <VBox spacing="10" style="-fx-background-color: #2c3e50; -fx-padding: 15;" prefHeight="Infinity">
+        <VBox spacing="15" style="-fx-background-color: #2c3e50; -fx-padding: 20;" prefHeight="Infinity" alignment="TOP_CENTER">
+
             <Button fx:id="btnErabiltzaileak" text="ERABILTZAILEAK"
                     onAction="#onbtnErabiltzaileak"
-                    style="-fx-background-color: #2ECC71; -fx-font-weight: bold; -fx-font-family: 'Segoe UI'; -fx-font-size: 15;" />
+                    style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 8; -fx-pref-width: 180; -fx-pref-height: 45;" />
+
             <Button fx:id="btnErreserbak" text="ERRESERBAK"
                     onAction="#onbtnErreserbak"
-                    style="-fx-background-color: #2ECC71; -fx-font-weight: bold; -fx-font-family: 'Segoe UI'; -fx-font-size: 15;" />
+                    style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 8; -fx-pref-width: 180; -fx-pref-height: 45;" />
+
             <Button fx:id="btnProduktuak" text="PRODUKTUAK"
                     onAction="#onbtnProduktuak"
-                    style="-fx-background-color: #2ECC71; -fx-font-weight: bold; -fx-font-family: 'Segoe UI'; -fx-font-size: 15;" />
+                    style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 8; -fx-pref-width: 180; -fx-pref-height: 45;" />
+
             <Button fx:id="btnMahaiak" text="MAHAIAK"
                     onAction="#onbtnMahaiak"
-                    style="-fx-background-color: #2ECC71; -fx-font-weight: bold; -fx-font-family: 'Segoe UI'; -fx-font-size: 15;" />
+                    style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 8; -fx-pref-width: 180; -fx-pref-height: 45;" />
+
             <Button fx:id="btnTxandak" text="TXANDAK"
                     onAction="#onbtnTxandak"
-                    style="-fx-background-color: #2ECC71; -fx-font-weight: bold; -fx-font-family: 'Segoe UI'; -fx-font-size: 15;" />
+                    style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 8; -fx-pref-width: 180; -fx-pref-height: 45;" />
+
+            <Button fx:id="btnHornitzaileak" text="HORNITZAILEAK"
+                    onAction="#onbtnHornitzaileak"
+                    style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 8; -fx-pref-width: 180; -fx-pref-height: 45;" />
+
+            <Button fx:id="btnOsagaiak" text="OSAGAIAK"
+                    onAction="#onbtnOsagaiak"
+                    style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 8; -fx-pref-width: 180; -fx-pref-height: 45;" />
+
+            <Button fx:id="btnMaterialak" text="MATERIALAK"
+                    onAction="#onbtnMaterialak"
+                    style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 8; -fx-pref-width: 180; -fx-pref-height: 45;" />
+
+            <Button fx:id="btnGordetzekoElementuak" text="GORDETZEKO ELEMENTUAK"
+                    onAction="#onbtnGordetzekoElementuak"
+                    style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 8; -fx-pref-width: 180; -fx-pref-height: 45;" />
+
+            <Button fx:id="btnEskariak" text="ESKARIAK"
+                    onAction="#onbtnEskariak"
+                    style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 8; -fx-pref-width: 180; -fx-pref-height: 45;" />
+
             <Pane VBox.vgrow="ALWAYS" />
+
             <Button fx:id="btnIrten" text="IRTEN"
                     onAction="#onbtnIrten"
-                    style="-fx-background-color: #E74C3C; -fx-font-weight: bold; -fx-font-family: 'Segoe UI'; -fx-font-size: 15;" />
+                    style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 8; -fx-pref-width: 180; -fx-pref-height: 45;" />
+
         </VBox>
     </left>
 

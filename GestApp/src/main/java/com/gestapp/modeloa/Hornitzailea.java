@@ -17,7 +17,7 @@ public class Hornitzailea {
         this.id = new SimpleIntegerProperty(id);
         this.izena = new SimpleStringProperty(izena);
         this.kontaktua = new SimpleStringProperty(kontaktua);
-        this.helbidea = new SimpleStringProperty(this.helbidea);
+        this.helbidea = new SimpleStringProperty(helbidea);
     }
 
     public int getId(){
