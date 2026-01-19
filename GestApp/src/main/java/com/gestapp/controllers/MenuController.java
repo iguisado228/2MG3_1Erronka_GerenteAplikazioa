@@ -80,7 +80,7 @@ public class MenuController {
         }catch (IOException e){e.printStackTrace();}
     }
 
-   
+
 
     @FXML
     public void onbtnHornitzaileak(javafx.event.ActionEvent actionEvent) {

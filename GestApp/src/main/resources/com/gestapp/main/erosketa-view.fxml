@@ -40,6 +40,14 @@
                               GridPane.rowIndex="1"
                               GridPane.columnIndex="1"
                               style="-fx-background-radius: 5;"/>
+                    <Label text="Materiala:" GridPane.rowIndex="4" GridPane.columnIndex="0"
+                           style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                    <ComboBox fx:id="materialaCombo"
+                              promptText="Aukeratu materiala"
+                              GridPane.rowIndex="4"
+                              GridPane.columnIndex="1"
+                              style="-fx-background-radius: 5;"/>
+
 
                     <Label text="Kantitatea:" GridPane.rowIndex="2" GridPane.columnIndex="0"
                            style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
