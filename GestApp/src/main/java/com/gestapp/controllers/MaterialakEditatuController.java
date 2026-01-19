@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.sql.Connection;
@@ -43,7 +44,11 @@ public class MaterialakEditatuController {
             }
             cmbHornitzailea.setItems(hornitzaileakList);
         } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, "Errorea hornitzaileak kargatzean").showAndWait();
+            Stage owner = (Stage) txtIzena.getScene().getWindow();
+            Alert alerta = new Alert(Alert.AlertType.ERROR, "Errorea hornitzaileak kargatzean");
+            alerta.initOwner(owner);
+            alerta.initModality(Modality.APPLICATION_MODAL);
+            alerta.showAndWait();
         }
     }
 
@@ -63,13 +68,17 @@ public class MaterialakEditatuController {
 
     @FXML
     private void gorde() {
+        Stage owner = (Stage) txtIzena.getScene().getWindow();
+
         if (cmbHornitzailea.getValue() == null) {
-            new Alert(Alert.AlertType.WARNING, "Aukeratu hornitzailea").showAndWait();
+            Alert alerta = new Alert(Alert.AlertType.WARNING, "Aukeratu hornitzailea");
+            alerta.initOwner(owner);
+            alerta.initModality(Modality.APPLICATION_MODAL);
+            alerta.showAndWait();
             return;
         }
 
         String sql = "UPDATE materialak SET izena=?, prezioa=?, stock=?, hornitzaileak_id=? WHERE id=?";
-        Stage owner = (Stage) txtIzena.getScene().getWindow();
 
         try (Connection conn = Konexioa.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -81,16 +90,24 @@ public class MaterialakEditatuController {
             pstmt.setInt(5, materiala.getId());
             pstmt.executeUpdate();
 
-            new Alert(Alert.AlertType.INFORMATION, "Materiala ondo eguneratu da").showAndWait();
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION, "Materiala ondo eguneratu da");
+            alerta.initOwner(owner);
+            alerta.initModality(Modality.APPLICATION_MODAL);
+            alerta.showAndWait();
+
             owner.close();
 
         } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, "Errorea eguneratzean").showAndWait();
+            Alert alerta = new Alert(Alert.AlertType.ERROR, "Errorea eguneratzean");
+            alerta.initOwner(owner);
+            alerta.initModality(Modality.APPLICATION_MODAL);
+            alerta.showAndWait();
         }
     }
 
     @FXML
     private void ezGorde() {
-        ((Stage) txtIzena.getScene().getWindow()).close();
+        Stage owner = (Stage) txtIzena.getScene().getWindow();
+        owner.close();
     }
 }

@@ -12,6 +12,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -64,7 +65,12 @@ public class MaterialakController {
             materialak.setItems(listaMateriala);
 
         } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, "Errorea datuak kargatzean").showAndWait();
+            Stage jabe = (Stage) materialak.getScene().getWindow();
+            Alert alerta = new Alert(Alert.AlertType.ERROR, "Errorea datuak kargatzean");
+            alerta.initOwner(jabe);
+            alerta.initModality(Modality.APPLICATION_MODAL);
+            alerta.showAndWait();
+            e.printStackTrace();
         }
     }
 
@@ -76,7 +82,11 @@ public class MaterialakController {
             stage.setScene(new Scene(root));
             stage.setFullScreen(true);
         } catch (IOException e) {
-            new Alert(Alert.AlertType.ERROR, "Errorea menua kargatzean").showAndWait();
+            Stage jabe = (Stage) materialak.getScene().getWindow();
+            Alert alerta = new Alert(Alert.AlertType.ERROR, "Errorea menua kargatzean");
+            alerta.initOwner(jabe);
+            alerta.initModality(Modality.APPLICATION_MODAL);
+            alerta.showAndWait();
         }
     }
 
@@ -87,19 +97,29 @@ public class MaterialakController {
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.initOwner((Stage) materialak.getScene().getWindow());
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
             datuak();
         } catch (IOException e) {
-            new Alert(Alert.AlertType.ERROR, "Leihoa irekitzean errorea").showAndWait();
+            Stage jabe = (Stage) materialak.getScene().getWindow();
+            Alert alerta = new Alert(Alert.AlertType.ERROR, "Leihoa irekitzean errorea");
+            alerta.initOwner(jabe);
+            alerta.initModality(Modality.APPLICATION_MODAL);
+            alerta.showAndWait();
+            e.printStackTrace();
         }
     }
 
     @FXML
     private void ezabatu() {
+        Stage jabe = (Stage) materialak.getScene().getWindow();
         Materiala m = materialak.getSelectionModel().getSelectedItem();
 
         if (m == null) {
-            new Alert(Alert.AlertType.WARNING, "Ez da materialik aukeratu").showAndWait();
+            Alert alerta = new Alert(Alert.AlertType.WARNING, "Ez da materialik aukeratu");
+            alerta.initOwner(jabe);
+            alerta.initModality(Modality.APPLICATION_MODAL);
+            alerta.showAndWait();
             return;
         }
 
@@ -110,19 +130,29 @@ public class MaterialakController {
             pstmt.executeUpdate();
             datuak();
 
-            new Alert(Alert.AlertType.INFORMATION, "Materiala ezabatu da").showAndWait();
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION, "Materiala ezabatu da");
+            alerta.initOwner(jabe);
+            alerta.initModality(Modality.APPLICATION_MODAL);
+            alerta.showAndWait();
 
         } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, "Ezabatzean errorea").showAndWait();
+            Alert alerta = new Alert(Alert.AlertType.ERROR, "Ezabatzean errorea");
+            alerta.initOwner(jabe);
+            alerta.initModality(Modality.APPLICATION_MODAL);
+            alerta.showAndWait();
         }
     }
 
     @FXML
     private void editatu() {
+        Stage jabe = (Stage) materialak.getScene().getWindow();
         Materiala m = materialak.getSelectionModel().getSelectedItem();
 
         if (m == null) {
-            new Alert(Alert.AlertType.WARNING, "Ez da materialik aukeratu").showAndWait();
+            Alert alerta = new Alert(Alert.AlertType.WARNING, "Ez da materialik aukeratu");
+            alerta.initOwner(jabe);
+            alerta.initModality(Modality.APPLICATION_MODAL);
+            alerta.showAndWait();
             return;
         }
 
@@ -134,12 +164,15 @@ public class MaterialakController {
 
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
-            stage.initOwner((Stage) materialak.getScene().getWindow());
+            stage.initOwner(jabe);
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
             datuak();
         } catch (IOException e) {
-            new Alert(Alert.AlertType.ERROR, "Editatzeko errorea").showAndWait();
+            Alert alerta = new Alert(Alert.AlertType.ERROR, "Editatzeko errorea");
+            alerta.initOwner(jabe);
+            alerta.initModality(Modality.APPLICATION_MODAL);
+            alerta.showAndWait();
         }
     }
 }
-    

@@ -51,7 +51,7 @@ public class MahaiakController {
                 Mahaia m = new Mahaia(
                         rs.getInt("id"),
                         rs.getInt("zenbakia"),
-                        rs.getInt("pertsona_kopuru"),
+                        rs.getInt("pertsona_kopurua"),
                         rs.getString("kokapena")
                 );
                 listaMahaia.add(m);

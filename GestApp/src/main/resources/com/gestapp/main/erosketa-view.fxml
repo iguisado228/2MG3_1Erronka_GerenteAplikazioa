@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.gestapp.controllers.ErosketaEginController"
+            style="-fx-background-color: #f4f4f4;">
+
+    <children>
+        <VBox spacing="25"
+              AnchorPane.topAnchor="40"
+              AnchorPane.leftAnchor="60"
+              AnchorPane.rightAnchor="60">
+
+            <Label text="Erosketa berria (Hornitzaileari eskaera)"
+                   style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #333;" />
+
+            <VBox spacing="20" style="-fx-background-color: white; -fx-padding: 25; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0, 0, 3);">
+
+                <GridPane hgap="20" vgap="15">
+                    <columnConstraints>
+                        <ColumnConstraints minWidth="150"/>
+                        <ColumnConstraints minWidth="300"/>
+                    </columnConstraints>
+
+                    <Label text="Hornitzailea:" GridPane.rowIndex="0" GridPane.columnIndex="0"
+                           style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                    <ComboBox fx:id="hornitzaileCombo"
+                              promptText="Aukeratu hornitzailea"
+                              GridPane.rowIndex="0"
+                              GridPane.columnIndex="1"
+                              style="-fx-background-radius: 5;"/>
+
+                    <Label text="Produktua:" GridPane.rowIndex="1" GridPane.columnIndex="0"
+                           style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                    <ComboBox fx:id="produktuaCombo"
+                              promptText="Aukeratu produktua"
+                              GridPane.rowIndex="1"
+                              GridPane.columnIndex="1"
+                              style="-fx-background-radius: 5;"/>
+
+                    <Label text="Kantitatea:" GridPane.rowIndex="2" GridPane.columnIndex="0"
+                           style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                    <Spinner fx:id="kantitateaSpinner"
+                             editable="true"
+                             GridPane.rowIndex="2"
+                             GridPane.columnIndex="1"
+                             style="-fx-background-radius: 5;"/>
+
+                    <Label text="Prezioa (€):" GridPane.rowIndex="3" GridPane.columnIndex="0"
+                           style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                    <TextField fx:id="prezioaField"
+                               promptText="Adib. 5.50"
+                               GridPane.rowIndex="3"
+                               GridPane.columnIndex="1"
+                               editable="false"
+                               style="-fx-background-color: #e9e9e9; -fx-background-radius: 5;"/>
+                </GridPane>
+            </VBox>
+
+            <HBox spacing="15" alignment="CENTER_RIGHT">
+                <Button text="Gorde" fx:id="gordeBtn"
+                        prefWidth="120"
+                        style="-fx-background-color: #5cb85c; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;"/>
+            </HBox>
+
+        </VBox>
+    </children>
+</AnchorPane>

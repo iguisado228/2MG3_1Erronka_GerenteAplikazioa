@@ -49,8 +49,8 @@
                     onAction="#onbtnGordetzekoElementuak"
                     style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 8; -fx-pref-width: 180; -fx-pref-height: 45;" />
 
-            <Button fx:id="btnEskariak" text="ESKARIAK"
-                    onAction="#onbtnEskariak"
+            <Button fx:id="btnErosketak" text="EROSKETAK"
+                    onAction="#onbtnErosketak"
                     style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 8; -fx-pref-width: 180; -fx-pref-height: 45;" />
 
             <Pane VBox.vgrow="ALWAYS" />

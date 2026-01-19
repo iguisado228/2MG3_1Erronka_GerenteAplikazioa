@@ -32,7 +32,7 @@ public class MahaiakEditatuController {
 
     @FXML
     private void gorde() {
-        String sql = "UPDATE mahaiak SET zenbakia=?, pertsona_kopuru=?, kokapena=? WHERE id=?";
+        String sql = "UPDATE mahaiak SET zenbakia=?, pertsona_kopurua=?, kokapena=? WHERE id=?";
 
         Stage owner = (Stage) txtZenbakia.getScene().getWindow();
 

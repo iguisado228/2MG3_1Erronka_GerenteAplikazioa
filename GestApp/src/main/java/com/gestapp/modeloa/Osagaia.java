@@ -19,6 +19,7 @@ public class Osagaia
 
     }
 
+
     public int getId(){
         return this.id.get();
     }
@@ -35,5 +36,19 @@ public class Osagaia
     }
     public int getHornitzaileaId(){
         return this.hornitzaileaId.get();
+    }
+
+    public void setId(int id) {
+        this.id.set(id);
+    }
+    public void setIzena(String izena) {
+        this.izena.set(izena);
+    }
+
+    public void setPrezioa(double prezioa) {
+        this.prezioa.set(prezioa);
+    }
+    public void setStock(int stock) {
+        this.stock.set(stock);
     }
 }

@@ -20,6 +20,7 @@ public class Hornitzailea {
         this.helbidea = new SimpleStringProperty(helbidea);
     }
 
+
     public int getId(){
         return this.id.get();
     }
@@ -37,4 +38,11 @@ public class Hornitzailea {
     }
 
 
+    public void setId(int id) {
+        this.id.set(id);
+
+    }
+    public void setIzena(String izena) {
+        this.izena.set(izena);
+    }
 }

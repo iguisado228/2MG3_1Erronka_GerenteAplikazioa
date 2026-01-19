@@ -26,46 +26,55 @@ public class MaterialakGehituController {
     @FXML
     private ComboBox<Hornitzaileak> cmbHornitzailea;
 
-    private ObservableList<Hornitzaileak> hornitzaileakList = FXCollections.observableArrayList();
+    private ObservableList<Hornitzaileak> hornitzaileakZerrenda = FXCollections.observableArrayList();
 
     @FXML
     private void initialize() {
-        Stage owner = (Stage) txtIzena.getScene().getWindow();
-        try (Connection conn = Konexioa.getConnection();
-             PreparedStatement stmt = conn.prepareStatement("SELECT id, izena FROM hornitzaileak");
+        txtIzena.sceneProperty().addListener((obs, oldScene, newScene) -> {
+            if (newScene != null) {
+                hornitzaileakKargatu();
+            }
+        });
+    }
+
+    private void hornitzaileakKargatu() {
+        Stage jabe = (Stage) txtIzena.getScene().getWindow();
+        try (Connection konexioa = Konexioa.getConnection();
+             PreparedStatement stmt = konexioa.prepareStatement("SELECT id, izena FROM hornitzaileak");
              ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
-                hornitzaileakList.add(new Hornitzaileak(
+                hornitzaileakZerrenda.add(new Hornitzaileak(
                         rs.getInt("id"),
                         rs.getString("izena")
                 ));
             }
-            cmbHornitzailea.setItems(hornitzaileakList);
+            cmbHornitzailea.setItems(hornitzaileakZerrenda);
+
         } catch (SQLException e) {
-            Alert a = new Alert(Alert.AlertType.ERROR, "Errorea hornitzaileak kargatzean");
-            a.initOwner(owner);
-            a.initModality(Modality.APPLICATION_MODAL);
-            a.showAndWait();
+            Alert alerta = new Alert(Alert.AlertType.ERROR, "Errorea hornitzaileak kargatzean");
+            alerta.initOwner(jabe);
+            alerta.initModality(Modality.APPLICATION_MODAL);
+            alerta.showAndWait();
         }
     }
 
     @FXML
     private void gorde() {
-        Stage owner = (Stage) txtIzena.getScene().getWindow();
+        Stage jabe = (Stage) txtIzena.getScene().getWindow();
 
         if (cmbHornitzailea.getValue() == null) {
-            Alert a = new Alert(Alert.AlertType.WARNING, "Aukeratu hornitzailea");
-            a.initOwner(owner);
-            a.initModality(Modality.APPLICATION_MODAL);
-            a.showAndWait();
+            Alert alerta = new Alert(Alert.AlertType.WARNING, "Aukeratu hornitzailea");
+            alerta.initOwner(jabe);
+            alerta.initModality(Modality.APPLICATION_MODAL);
+            alerta.showAndWait();
             return;
         }
 
         String sql = "INSERT INTO materialak (izena, prezioa, stock, hornitzaileak_id) VALUES (?, ?, ?, ?)";
 
-        try (Connection conn = Konexioa.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try (Connection konexioa = Konexioa.getConnection();
+             PreparedStatement pstmt = konexioa.prepareStatement(sql)) {
 
             pstmt.setString(1, txtIzena.getText());
             pstmt.setDouble(2, Double.parseDouble(txtPrezioa.getText()));
@@ -74,22 +83,28 @@ public class MaterialakGehituController {
             pstmt.executeUpdate();
 
             Alert ok = new Alert(Alert.AlertType.INFORMATION, "Materiala ondo gorde da");
-            ok.initOwner(owner);
+            ok.initOwner(jabe);
             ok.initModality(Modality.APPLICATION_MODAL);
             ok.showAndWait();
-            owner.close();
+            jabe.close();
 
         } catch (SQLException e) {
-            Alert a = new Alert(Alert.AlertType.ERROR, "Errorea materiala gordetzean");
-            a.initOwner(owner);
-            a.initModality(Modality.APPLICATION_MODAL);
-            a.showAndWait();
+            Alert alerta = new Alert(Alert.AlertType.ERROR, "Errorea materiala gordetzean");
+            alerta.initOwner(jabe);
+            alerta.initModality(Modality.APPLICATION_MODAL);
+            alerta.showAndWait();
+        } catch (NumberFormatException e) {
+            Alert alerta = new Alert(Alert.AlertType.ERROR, "Mesedez, prezioa eta stock zenbakiak izan behar dira");
+            alerta.initOwner(jabe);
+            alerta.initModality(Modality.APPLICATION_MODAL);
+            alerta.showAndWait();
         }
     }
 
     @FXML
     private void atzera() {
-        ((Stage) txtIzena.getScene().getWindow()).close();
+        Stage jabe = (Stage) txtIzena.getScene().getWindow();
+        jabe.close();
     }
 
     public static class Hornitzaileak {

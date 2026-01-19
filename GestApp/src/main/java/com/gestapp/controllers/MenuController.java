@@ -3,6 +3,7 @@ package com.gestapp.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -40,8 +41,8 @@ public class MenuController {
             e.printStackTrace();
         }
     }
-    
-    
+
+
     @FXML
     public void onbtnErreserbak(javafx.event.ActionEvent actionEvent) {
         try{
@@ -126,12 +127,14 @@ public class MenuController {
     }
 
     @FXML
-    public void onbtnEskariak(javafx.event.ActionEvent actionEvent) {
+    public void onbtnErosketak(javafx.event.ActionEvent actionEvent) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gestapp/main/eskaria-view.fxml"));
-            Parent eskariaView = loader.load();
-            contentArea.getChildren().setAll(eskariaView);
-        }catch (IOException e){e.printStackTrace();}
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gestapp/main/erosketa-view.fxml"));
+            Parent erosketaView = loader.load();
+            contentArea.getChildren().setAll(erosketaView);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
