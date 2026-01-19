@@ -7,15 +7,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import com.gestapp.hasheadorea.Hasheadorea;
+import com.gestapp.konexioa.Konexioa;
 
 import java.io.IOException;
 import java.sql.*;
-
-import com.gestapp.hasheadorea.Hasheadorea;
-
-import javafx.stage.Stage;
-import com.gestapp.konexioa.Konexioa;
-
 
 public class LoginController {
 
@@ -27,7 +24,6 @@ public class LoginController {
 
     @FXML
     private Button btnLogin;
-
 
     private void alerta(Alert.AlertType type, String title, String message) {
         Alert alert = new Alert(type);
@@ -49,41 +45,37 @@ public class LoginController {
 
         try (Connection conn = Konexioa.getConnection()) {
 
+            String hash = Hasheadorea.pasahitzaHasheatu(pasahitza);
 
-            String hasheadorea = Hasheadorea.pasahitzaHasheatu(pasahitza);
+            String sqlUser = "SELECT gerentea FROM langileak WHERE erabiltzaile_izena=? AND pasahitza=?";
+            PreparedStatement stmtUser = conn.prepareStatement(sqlUser);
+            stmtUser.setString(1, erabiltzailea);
+            stmtUser.setString(2, hash);
 
+            ResultSet rsUser = stmtUser.executeQuery();
 
-            String sql = "SELECT id FROM langileak WHERE erabiltzaile_izena=? AND pasahitza=?";
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, erabiltzailea);
-            stmt.setString(2, hasheadorea);
-
-            ResultSet rs = stmt.executeQuery();
-
-            if (rs.next()) {
-                int id = rs.getInt("id");
-                alerta(Alert.AlertType.INFORMATION, "Login ondo!", "Ongi etorri " + erabiltzailea + "!");
-
-
-
-
-    FXMLLoader loader = new FXMLLoader(
-            getClass().getResource("/com/gestapp/main/menu-view.fxml")
-    );
-    Scene menuScene = new Scene(loader.load());
-
-
-    Stage stage = (Stage) btnLogin.getScene().getWindow();
-
-    stage.setScene(menuScene);
-    stage.setTitle("Menua");
-    stage.setFullScreen(true);
-    stage.show();
-
-
-            } else {
+            if (!rsUser.next()) {
                 alerta(Alert.AlertType.ERROR, "Errorea", "Erabiltzaile edo pasahitz okerra.");
+                return;
             }
+
+            boolean gerentea = rsUser.getBoolean("gerentea");
+
+            if (!gerentea) {
+                alerta(Alert.AlertType.ERROR, "Sarbidea ukatuta", "Ez duzu sarbiderik. Gerentea izan behar zara.");
+                return;
+            }
+
+            alerta(Alert.AlertType.INFORMATION, "Login ondo!", "Ongi etorri " + erabiltzailea + "!");
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gestapp/main/menu-view.fxml"));
+            Scene menuScene = new Scene(loader.load());
+
+            Stage stage = (Stage) btnLogin.getScene().getWindow();
+            stage.setScene(menuScene);
+            stage.setTitle("Menua");
+            stage.setFullScreen(true);
+            stage.show();
 
         } catch (SQLException e) {
             e.printStackTrace();
