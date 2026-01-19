@@ -29,9 +29,6 @@
                     onAction="#onbtnMahaiak"
                     style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 8; -fx-pref-width: 180; -fx-pref-height: 45;" />
 
-            <Button fx:id="btnTxandak" text="TXANDAK"
-                    onAction="#onbtnTxandak"
-                    style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 8; -fx-pref-width: 180; -fx-pref-height: 45;" />
 
             <Button fx:id="btnHornitzaileak" text="HORNITZAILEAK"
                     onAction="#onbtnHornitzaileak"
@@ -45,9 +42,6 @@
                     onAction="#onbtnMaterialak"
                     style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 8; -fx-pref-width: 180; -fx-pref-height: 45;" />
 
-            <Button fx:id="btnGordetzekoElementuak" text="GORDETZEKO ELEMENTUAK"
-                    onAction="#onbtnGordetzekoElementuak"
-                    style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 8; -fx-pref-width: 180; -fx-pref-height: 45;" />
 
             <Button fx:id="btnErosketak" text="EROSKETAK"
                     onAction="#onbtnErosketak"

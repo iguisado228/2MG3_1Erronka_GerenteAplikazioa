@@ -80,15 +80,7 @@ public class MenuController {
         }catch (IOException e){e.printStackTrace();}
     }
 
-    @FXML
-    public void onbtnTxandak(javafx.event.ActionEvent actionEvent) {
-
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gestapp/main/txanda-view.fxml"));
-            Parent txandaView = loader.load();
-            contentArea.getChildren().setAll(txandaView);
-        }catch (IOException e){e.printStackTrace();}
-    }
+   
 
     @FXML
     public void onbtnHornitzaileak(javafx.event.ActionEvent actionEvent) {
@@ -117,14 +109,7 @@ public class MenuController {
         }catch (IOException e){e.printStackTrace();}
     }
 
-    @FXML
-    public void onbtnGordetzekoElementuak(javafx.event.ActionEvent actionEvent) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gestapp/main/gordetzekoElementua-view.fxml"));
-            Parent gordeView = loader.load();
-            contentArea.getChildren().setAll(gordeView);
-        }catch (IOException e){e.printStackTrace();}
-    }
+
 
     @FXML
     public void onbtnErosketak(javafx.event.ActionEvent actionEvent) {
