@@ -29,8 +29,9 @@ public class ErreserbakController {
     @FXML private TableColumn<Erreserba, String> fakturaRuta;
     @FXML private TableColumn<Erreserba, Integer> langileakId;
     @FXML private TableColumn<Erreserba, Integer> mahaiakId;
+    @FXML private TableColumn<Erreserba, Boolean> ordainduta;
 
-    private ObservableList<Erreserba> listaErreserbak = FXCollections.observableArrayList();
+    private ObservableList<Erreserba> lista = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
@@ -43,76 +44,71 @@ public class ErreserbakController {
         fakturaRuta.setCellValueFactory(new PropertyValueFactory<>("fakturaRuta"));
         langileakId.setCellValueFactory(new PropertyValueFactory<>("langileakId"));
         mahaiakId.setCellValueFactory(new PropertyValueFactory<>("mahaiakId"));
-        datuak();
+        ordainduta.setCellValueFactory(new PropertyValueFactory<>("ordainduta"));
+        kargatu();
     }
 
-    private void datuak() {
-        listaErreserbak.clear();
-        String sql = "SELECT * FROM erreserbak";
-
+    private void kargatu() {
+        lista.clear();
         try (Connection conn = Konexioa.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+             Statement st = conn.createStatement();
+             ResultSet rs = st.executeQuery("SELECT * FROM erreserbak")) {
 
             while (rs.next()) {
                 Timestamp ts = rs.getTimestamp("eguna_ordua");
-                Erreserba e = new Erreserba(
+                lista.add(new Erreserba(
                         rs.getInt("id"),
                         rs.getString("bezero_izena"),
                         rs.getString("telefonoa"),
                         rs.getInt("pertsona_kopurua"),
                         ts != null ? ts.toLocalDateTime() : null,
-                        rs.getDouble("prezio_totala"),
+                        rs.getObject("prezio_totala") != null ? rs.getDouble("prezio_totala") : null,
                         rs.getString("faktura_ruta"),
                         rs.getInt("langileak_id"),
-                        rs.getInt("mahaiak_id")
-                );
-                listaErreserbak.add(e);
+                        rs.getInt("mahaiak_id"),
+                        rs.getBoolean("ordainduta")
+                ));
             }
-
-            erreserbak.setItems(listaErreserbak);
+            erreserbak.setItems(lista);
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            alerta(Alert.AlertType.ERROR, "Errorea", "DB errorea", "Ezin izan dira datuak kargatu");
         }
     }
 
     @FXML
     private void gehitu() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gestapp/main/erreserbaGehitu-view.fxml"));
-            Parent gehitu = loader.load();
+            Parent root = FXMLLoader.load(getClass().getResource("/com/gestapp/main/erreserbaGehitu-view.fxml"));
             Stage stage = new Stage();
-            stage.setTitle("Erreserba Gehitu");
-            stage.setScene(new Scene(gehitu));
+            stage.setScene(new Scene(root));
             stage.initOwner(erreserbak.getScene().getWindow());
-            stage.setResizable(false);
             stage.showAndWait();
-            datuak();
-        } catch (IOException e) { e.printStackTrace(); }
+            kargatu();
+        } catch (IOException e) {
+            alerta(Alert.AlertType.ERROR, "Errorea", "Leihoa", "Ezin izan da leihoa ireki");
+        }
     }
 
     @FXML
     private void editatu() {
         Erreserba e = erreserbak.getSelectionModel().getSelectedItem();
         if (e == null) {
-            alerta("Errorea", "Ez dago ezer hautatuta", "Hautatu erreserba bat editatzeko");
+            alerta(Alert.AlertType.WARNING, "Kontuz", "Hautatu", "Erreserba bat hautatu behar da");
             return;
         }
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gestapp/main/erreserbaEditatu-view.fxml"));
             Parent root = loader.load();
-            ErreserbakEditatuController controller = loader.getController();
-            controller.setErreserba(e);
+            loader.<ErreserbakEditatuController>getController().setErreserba(e);
             Stage stage = new Stage();
-            stage.setTitle("Erreserba Editatu");
             stage.setScene(new Scene(root));
             stage.initOwner(erreserbak.getScene().getWindow());
-            stage.setResizable(false);
             stage.showAndWait();
-            datuak();
+            kargatu();
         } catch (IOException ex) {
-            ex.printStackTrace();
+            alerta(Alert.AlertType.ERROR, "Errorea", "Leihoa", "Ezin izan da editatzeko leihoa ireki");
         }
     }
 
@@ -120,23 +116,31 @@ public class ErreserbakController {
     private void ezabatu() {
         Erreserba e = erreserbak.getSelectionModel().getSelectedItem();
         if (e == null) {
-            alerta("Errorea", "Ez dago ezer hautatuta", "Hautatu erreserba bat ezabatzeko");
+            alerta(Alert.AlertType.WARNING, "Kontuz", "Hautatu", "Ezabatzeko erreserba bat hautatu");
             return;
         }
 
-        String sql = "DELETE FROM erreserbak WHERE id=?";
-
         try (Connection conn = Konexioa.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+             PreparedStatement ps = conn.prepareStatement("DELETE FROM erreserbak WHERE id=?")) {
 
-            pstmt.setInt(1, e.getId());
-            pstmt.executeUpdate();
-            datuak();
-            alerta("Ondo", "Erreserba ezabatu da", "Hau da erreserba hautatua ezabatua");
+            ps.setInt(1, e.getId());
+            ps.executeUpdate();
+            alerta(Alert.AlertType.INFORMATION, "Ondo", "Ezabatuta", "Erreserba ezabatu da");
+            kargatu();
 
         } catch (SQLException ex) {
-            alerta("Errorea", "DB errorea", "Ezin izan da erreserba ezabatu");
+            alerta(Alert.AlertType.ERROR, "Errorea", "DB errorea", "Ezin izan da erreserba ezabatu");
         }
+    }
+
+    private void alerta(Alert.AlertType mota, String t, String h, String m) {
+        Alert a = new Alert(mota);
+        a.initOwner(erreserbak.getScene().getWindow());
+        a.initModality(Modality.APPLICATION_MODAL);
+        a.setTitle(t);
+        a.setHeaderText(h);
+        a.setContentText(m);
+        a.showAndWait();
     }
 
     @FXML
@@ -146,18 +150,8 @@ public class ErreserbakController {
             Parent root = loader.load();
             Stage stage = (Stage) erreserbak.getScene().getWindow();
             stage.setScene(new Scene(root));
-            stage.setFullScreen(true);
-        } catch (IOException e) { e.printStackTrace(); }
-    }
-
-    private void alerta(String titulua, String header, String mezua) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(titulua);
-        alert.setHeaderText(header);
-        alert.setContentText(mezua);
-        Stage owner = (Stage) erreserbak.getScene().getWindow();
-        alert.initOwner(owner);
-        alert.initModality(Modality.WINDOW_MODAL);
-        alert.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

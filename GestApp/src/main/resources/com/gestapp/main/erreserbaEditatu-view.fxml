@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -11,7 +12,7 @@
           style="-fx-background-color: white; -fx-padding: 35; -fx-background-radius: 18; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 18, 0, 0, 6);"
           AnchorPane.topAnchor="60" AnchorPane.bottomAnchor="60" AnchorPane.leftAnchor="60" AnchorPane.rightAnchor="60">
 
-        <Label text="Erreserba Editatu" style="-fx-font-size: 26px; -fx-font-weight: bold;"/>
+        <Label text="Erreserba Editatu" style="-fx-font-size:26px; -fx-font-weight:bold;"/>
 
         <GridPane hgap="15" vgap="14">
             <columnConstraints>
@@ -20,36 +21,41 @@
             </columnConstraints>
 
             <Label text="Bezero Izena:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-            <TextField fx:id="txtBezeroIzena" prefWidth="300" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+            <TextField fx:id="txtBezeroIzena" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
             <Label text="Telefonoa:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-            <TextField fx:id="txtTelefonoa" prefWidth="300" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            <TextField fx:id="txtTelefonoa" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
             <Label text="Pertsonak:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-            <TextField fx:id="txtPertsonak" prefWidth="300" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+            <TextField fx:id="txtPertsonak" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 
             <Label text="Eguna / Ordua:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
             <HBox spacing="10" GridPane.rowIndex="3" GridPane.columnIndex="1">
-                <DatePicker fx:id="dpEguna" prefWidth="145"/>
-                <TextField fx:id="txtOrdua" prefWidth="145" promptText="HH:mm"/>
+                <DatePicker fx:id="dpEguna"/>
+                <TextField fx:id="txtOrdua" promptText="HH:mm"/>
             </HBox>
 
             <Label text="Prezioa:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
-            <TextField fx:id="txtPrezioa" prefWidth="300" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+            <TextField fx:id="txtPrezioa" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
 
             <Label text="Faktura:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
-            <TextField fx:id="txtFaktura" prefWidth="300" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+            <TextField fx:id="txtFaktura" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
 
             <Label text="Langilea:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
-            <ComboBox fx:id="cmbLangilea" prefWidth="300" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+            <ComboBox fx:id="cmbLangilea" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
 
             <Label text="Mahaia:" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
-            <ComboBox fx:id="cmbMahai" prefWidth="300" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+            <ComboBox fx:id="cmbMahai" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+
+            <Label text="Ordainduta:" GridPane.rowIndex="8" GridPane.columnIndex="0"/>
+            <CheckBox fx:id="chkOrdainduta" GridPane.rowIndex="8" GridPane.columnIndex="1"/>
         </GridPane>
 
-        <HBox spacing="20" alignment="CENTER">
-            <Button text="Gorde" prefWidth="150" style="-fx-background-color:#2ecc71; -fx-text-fill:white;" onAction="#gorde"/>
-            <Button text="Ezeztatu" prefWidth="150" style="-fx-background-color:#e74c3c; -fx-text-fill:white;" onAction="#ezGorde"/>
+        <HBox spacing="20">
+            <Button text="Gorde" prefWidth="150" onAction="#gorde"
+                    style="-fx-background-color:#2ecc71; -fx-text-fill:white;"/>
+            <Button text="Ezeztatu" prefWidth="150" onAction="#ezGorde"
+                    style="-fx-background-color:#e74c3c; -fx-text-fill:white;"/>
         </HBox>
 
     </VBox>

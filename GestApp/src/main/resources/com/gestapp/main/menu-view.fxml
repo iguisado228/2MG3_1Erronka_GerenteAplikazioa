@@ -13,7 +13,7 @@
     <left>
         <VBox spacing="15" style="-fx-background-color: #2c3e50; -fx-padding: 20;" prefHeight="Infinity" alignment="TOP_CENTER">
 
-            <Button fx:id="btnErabiltzaileak" text="ERABILTZAILEAK"
+            <Button fx:id="btnErabiltzaileak" text="LANGILEAK"
                     onAction="#onbtnErabiltzaileak"
                     style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 8; -fx-pref-width: 180; -fx-pref-height: 45;" />
 
