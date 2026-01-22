@@ -194,7 +194,7 @@ public class ErosketaEginController {
             }
 
             conn.commit();
-            alerta("Ondo", "Erosketa ondo gorde da");
+            alerta("Ondo", "Erosketa hornitzaileari bidalita");
 
         } catch (Exception e) {
             e.printStackTrace();
