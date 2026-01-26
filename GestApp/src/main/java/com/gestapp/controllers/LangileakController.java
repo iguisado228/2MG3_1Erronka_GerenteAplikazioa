@@ -155,6 +155,7 @@ public class LangileakController {
             alerta.setTitle("Ezabatu");
             alerta.setHeaderText(null);
             alerta.setContentText("Ez da langilerik hautatu.");
+            alerta.initOwner(langileak.getScene().getWindow());
             alerta.show();
             ((Stage) alerta.getDialogPane().getScene().getWindow()).setAlwaysOnTop(true);
             return;
@@ -173,6 +174,7 @@ public class LangileakController {
             ok.setTitle("Ezabatu");
             ok.setHeaderText(null);
             ok.setContentText("Langilea ongi ezabatu da.");
+            ok.initOwner(langileak.getScene().getWindow());
             ok.show();
             ((Stage) ok.getDialogPane().getScene().getWindow()).setAlwaysOnTop(true);
 
@@ -181,8 +183,10 @@ public class LangileakController {
             error.setTitle("Errorea");
             error.setHeaderText(null);
             error.setContentText("Errorea langilea ezabatzean.");
+            error.initOwner(langileak.getScene().getWindow());
             error.show();
             ((Stage) error.getDialogPane().getScene().getWindow()).setAlwaysOnTop(true);
         }
     }
+
 }
