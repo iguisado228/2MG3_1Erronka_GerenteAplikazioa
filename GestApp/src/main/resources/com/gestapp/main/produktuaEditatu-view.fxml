@@ -2,35 +2,49 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8"
-            xmlns:fx="http://javafx.com/fxml/1"
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.gestapp.controllers.ProduktuakEditatuController"
-            style="-fx-background-color: #f4f6f9;">
+            style="-fx-background-color: linear-gradient(to bottom right, #e9eef3, #f7f9fc);">
 
-    <VBox spacing="20" alignment="CENTER" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="50" AnchorPane.rightAnchor="50">
+    <VBox spacing="25" alignment="CENTER" maxWidth="520"
+          style="-fx-background-color: white;
+                 -fx-padding: 35;
+                 -fx-background-radius: 18;
+                 -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 18, 0, 0, 6);"
+          AnchorPane.topAnchor="60"
+          AnchorPane.bottomAnchor="60"
+          AnchorPane.leftAnchor="60"
+          AnchorPane.rightAnchor="60">
 
-        <!-- Encabezado -->
-        <Label text="✏️ Editatu Produktua"
-               style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;">
-            <font>
-                <Font name="Segoe UI" size="24.0" />
-            </font>
-        </Label>
+        <Label text="Produktua Editatu"
+               style="-fx-font-size:26px; -fx-font-weight:bold;"/>
 
-        <!-- Campos de texto -->
-        <TextField fx:id="txtIzena" promptText="Izena" style="-fx-padding: 8; -fx-font-size: 14; -fx-background-radius: 5;"/>
-        <TextField fx:id="txtPrezioa" promptText="Prezioa" style="-fx-padding: 8; -fx-font-size: 14; -fx-background-radius: 5;"/>
-        <TextField fx:id="txtMota" promptText="Mota" style="-fx-padding: 8; -fx-font-size: 14; -fx-background-radius: 5;"/>
-        <TextField fx:id="txtStock" promptText="Stock" style="-fx-padding: 8; -fx-font-size: 14; -fx-background-radius: 5;"/>
+        <GridPane hgap="15" vgap="14">
+            <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" prefWidth="160"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+            </columnConstraints>
 
-        <!-- Botones -->
-        <HBox spacing="15" alignment="CENTER">
-            <Button text="💾 Gorde" onAction="#gorde"
-                    style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14; -fx-background-radius: 5; -fx-padding: 8 20;"/>
-            <Button text="❌ Utzi" onAction="#ezGorde"
-                    style="-fx-background-color: #7f8c8d; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14; -fx-background-radius: 5; -fx-padding: 8 20;"/>
+            <Label text="Izena:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtIzena" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+            <Label text="Prezioa:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtPrezioa" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+            <Label text="Mota:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtMota" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+            <Label text="Stock:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtStock" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+        </GridPane>
+
+        <HBox spacing="20">
+            <Button text="Gorde" prefWidth="150" onAction="#gorde"
+                    style="-fx-background-color:#2ecc71; -fx-text-fill:white;"/>
+            <Button text="Utzi" prefWidth="150" onAction="#ezGorde"
+                    style="-fx-background-color:#e74c3c; -fx-text-fill:white;"/>
         </HBox>
 
     </VBox>

@@ -20,38 +20,17 @@ import java.sql.*;
 
 public class LangileakController {
 
-    @FXML
-    private TableView<Langilea> langileak;
-
-    @FXML
-    private TableColumn<Langilea, Integer> id;
-
-    @FXML
-    private TableColumn<Langilea, Integer> langileKodea;
-
-    @FXML
-    private TableColumn<Langilea, String> izena;
-
-    @FXML
-    private TableColumn<Langilea, String> abizena;
-
-    @FXML
-    private TableColumn<Langilea, String> nan;
-
-    @FXML
-    private TableColumn<Langilea, String> erabiltzaileIzena;
-
-    @FXML
-    private TableColumn<Langilea, String> pasahitza;
-
-    @FXML
-    private TableColumn<Langilea, Boolean> gerentea;
-
-    @FXML
-    private TableColumn<Langilea, Boolean> tpvSarrera;
-
-    @FXML
-    private TableColumn<Langilea, String> helbidea;
+    @FXML private TableView<Langilea> langileak;
+    @FXML private TableColumn<Langilea, Integer> id;
+    @FXML private TableColumn<Langilea, Integer> langileKodea;
+    @FXML private TableColumn<Langilea, String> izena;
+    @FXML private TableColumn<Langilea, String> abizena;
+    @FXML private TableColumn<Langilea, String> nan;
+    @FXML private TableColumn<Langilea, String> erabiltzaileIzena;
+    @FXML private TableColumn<Langilea, String> pasahitza;
+    @FXML private TableColumn<Langilea, Boolean> gerentea;
+    @FXML private TableColumn<Langilea, Boolean> tpvSarrera;
+    @FXML private TableColumn<Langilea, String> helbidea;
 
     private final ObservableList<Langilea> listaLangileak = FXCollections.observableArrayList();
 
@@ -64,15 +43,11 @@ public class LangileakController {
         nan.setCellValueFactory(new PropertyValueFactory<>("nan"));
         erabiltzaileIzena.setCellValueFactory(new PropertyValueFactory<>("erabiltzaileIzena"));
         pasahitza.setCellValueFactory(new PropertyValueFactory<>("pasahitza"));
-
         gerentea.setCellValueFactory(cellData -> cellData.getValue().gerenteaProperty());
         gerentea.setCellFactory(tc -> new CheckBoxTableCell<>());
-
         tpvSarrera.setCellValueFactory(cellData -> cellData.getValue().tpvSarreraProperty());
         tpvSarrera.setCellFactory(tc -> new CheckBoxTableCell<>());
-
         helbidea.setCellValueFactory(new PropertyValueFactory<>("helbidea"));
-
         datuak();
     }
 
@@ -102,27 +77,24 @@ public class LangileakController {
             langileak.setItems(listaLangileak);
 
         } catch (SQLException e) {
-            e.printStackTrace();
             Alert error = new Alert(Alert.AlertType.ERROR);
             error.setTitle("Errorea");
             error.setHeaderText(null);
             error.setContentText("Errorea langileak kargatzean.");
             error.show();
+            ((Stage) error.getDialogPane().getScene().getWindow()).setAlwaysOnTop(true);
         }
     }
 
     @FXML
     private void atzera() {
         try {
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/com/gestapp/main/menu-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gestapp/main/menu-view.fxml"));
             Parent root = loader.load();
-
             Stage stage = (Stage) langileak.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.setFullScreen(true);
             stage.show();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -131,19 +103,15 @@ public class LangileakController {
     @FXML
     private void gehitu() {
         try {
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/com/gestapp/main/langileaGehitu-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gestapp/main/langileaGehitu-view.fxml"));
             Parent root = loader.load();
-
             Stage stage = new Stage();
             stage.setTitle("Langilea Gehitu");
             stage.setScene(new Scene(root));
             stage.initOwner(langileak.getScene().getWindow());
             stage.setResizable(false);
             stage.showAndWait();
-
             datuak();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -152,33 +120,28 @@ public class LangileakController {
     @FXML
     private void editatu() {
         Langilea aukeratuta = langileak.getSelectionModel().getSelectedItem();
-
         if (aukeratuta == null) {
             Alert alerta = new Alert(Alert.AlertType.WARNING);
             alerta.setTitle("Editatu");
             alerta.setHeaderText(null);
             alerta.setContentText("Ez da langilerik hautatu.");
             alerta.show();
+            ((Stage) alerta.getDialogPane().getScene().getWindow()).setAlwaysOnTop(true);
             return;
         }
 
         try {
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/com/gestapp/main/langileaEditatu-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gestapp/main/langileaEditatu-view.fxml"));
             Parent root = loader.load();
-
             LangileaEditatuController controller = loader.getController();
             controller.setLangilea(aukeratuta);
-
             Stage stage = new Stage();
             stage.setTitle("Langilea Editatu");
             stage.setScene(new Scene(root));
             stage.initOwner(langileak.getScene().getWindow());
             stage.setResizable(false);
             stage.showAndWait();
-
             datuak();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -187,13 +150,13 @@ public class LangileakController {
     @FXML
     private void ezabatu() {
         Langilea aukeratuta = langileak.getSelectionModel().getSelectedItem();
-
         if (aukeratuta == null) {
             Alert alerta = new Alert(Alert.AlertType.WARNING);
             alerta.setTitle("Ezabatu");
             alerta.setHeaderText(null);
             alerta.setContentText("Ez da langilerik hautatu.");
             alerta.show();
+            ((Stage) alerta.getDialogPane().getScene().getWindow()).setAlwaysOnTop(true);
             return;
         }
 
@@ -204,7 +167,6 @@ public class LangileakController {
 
             pstmt.setInt(1, aukeratuta.getId());
             pstmt.executeUpdate();
-
             datuak();
 
             Alert ok = new Alert(Alert.AlertType.INFORMATION);
@@ -212,14 +174,15 @@ public class LangileakController {
             ok.setHeaderText(null);
             ok.setContentText("Langilea ongi ezabatu da.");
             ok.show();
+            ((Stage) ok.getDialogPane().getScene().getWindow()).setAlwaysOnTop(true);
 
         } catch (SQLException e) {
-            e.printStackTrace();
             Alert error = new Alert(Alert.AlertType.ERROR);
             error.setTitle("Errorea");
             error.setHeaderText(null);
             error.setContentText("Errorea langilea ezabatzean.");
             error.show();
+            ((Stage) error.getDialogPane().getScene().getWindow()).setAlwaysOnTop(true);
         }
     }
 }

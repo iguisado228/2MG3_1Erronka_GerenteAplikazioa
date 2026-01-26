@@ -1,78 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.scene.text.Font?>
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.gestapp.controllers.LangileakGehituController"
-            prefHeight="370" prefWidth="400">
+            style="-fx-background-color: linear-gradient(to bottom right, #e9eef3, #f7f9fc);">
 
-    <VBox spacing="6" alignment="CENTER"
-          AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10">
+    <VBox spacing="25" alignment="CENTER" maxWidth="520"
+          style="-fx-background-color: white;
+                 -fx-padding: 35;
+                 -fx-background-radius: 18;
+                 -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 18, 0, 0, 6);"
+          AnchorPane.topAnchor="60"
+          AnchorPane.bottomAnchor="60"
+          AnchorPane.leftAnchor="60"
+          AnchorPane.rightAnchor="60">
 
-        <Label text="Langile Kodea">
-            <font><Font name="Segoe UI" size="16"/></font>
-        </Label>
-        <TextField fx:id="txtLangileKodea">
-            <font><Font name="Segoe UI" size="14"/></font>
-        </TextField>
+        <Label text="Langilea Gehitu"
+               style="-fx-font-size:26px; -fx-font-weight:bold;"/>
 
-        <Label text="Izena">
-            <font><Font name="Segoe UI" size="16"/></font>
-        </Label>
-        <TextField fx:id="txtIzena">
-            <font><Font name="Segoe UI" size="14"/></font>
-        </TextField>
+        <GridPane hgap="15" vgap="14">
+            <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" prefWidth="160"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+            </columnConstraints>
 
-        <Label text="Abizena">
-            <font><Font name="Segoe UI" size="16"/></font>
-        </Label>
-        <TextField fx:id="txtAbizena">
-            <font><Font name="Segoe UI" size="14"/></font>
-        </TextField>
+            <Label text="Langile Kodea:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtLangileKodea" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
-        <Label text="NAN">
-            <font><Font name="Segoe UI" size="16"/></font>
-        </Label>
-        <TextField fx:id="txtNan">
-            <font><Font name="Segoe UI" size="14"/></font>
-        </TextField>
+            <Label text="Izena:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtIzena" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
-        <Label text="Erabiltzaile Izena">
-            <font><Font name="Segoe UI" size="16"/></font>
-        </Label>
-        <TextField fx:id="txtErabiltzaileIzena">
-            <font><Font name="Segoe UI" size="14"/></font>
-        </TextField>
+            <Label text="Abizena:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtAbizena" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 
-        <Label text="Pasahitza">
-            <font><Font name="Segoe UI" size="16"/></font>
-        </Label>
-        <TextField fx:id="txtPasahitza">
-            <font><Font name="Segoe UI" size="14"/></font>
-        </TextField>
+            <Label text="NAN:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtNan" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
 
-        <Label text="Helbidea">
-            <font><Font name="Segoe UI" size="16"/></font>
-        </Label>
-        <TextField fx:id="txtHelbidea">
-            <font><Font name="Segoe UI" size="14"/></font>
-        </TextField>
+            <Label text="Erabiltzaile Izena:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtErabiltzaileIzena" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
 
-        <CheckBox fx:id="chkGerentea" text="Gerentea">
-            <font><Font name="Segoe UI" size="14"/></font>
-        </CheckBox>
-        <CheckBox fx:id="chkTpvSarrera" text="TPV Sarrera">
-            <font><Font name="Segoe UI" size="14"/></font>
-        </CheckBox>
+            <Label text="Pasahitza:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+            <PasswordField fx:id="txtPasahitza" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
 
-        <HBox spacing="15" alignment="CENTER">
-            <Button text="Gorde" onAction="#gorde">
-                <font><Font name="Segoe UI" size="15"/></font>
-            </Button>
-            <Button text="Utzi" onAction="#atzera">
-                <font><Font name="Segoe UI" size="15"/></font>
-            </Button>
+            <Label text="Helbidea:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtHelbidea" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+
+            <Label text="Baimenak:" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+            <VBox spacing="8" GridPane.rowIndex="7" GridPane.columnIndex="1">
+                <CheckBox fx:id="chkGerentea" text="Gerentea"/>
+                <CheckBox fx:id="chkTpvSarrera" text="TPV Sarrera"/>
+            </VBox>
+        </GridPane>
+
+        <HBox spacing="20">
+            <Button text="Gorde" prefWidth="150" onAction="#gorde"
+                    style="-fx-background-color:#2ecc71; -fx-text-fill:white;"/>
+            <Button text="Utzi" prefWidth="150" onAction="#atzera"
+                    style="-fx-background-color:#e74c3c; -fx-text-fill:white;"/>
         </HBox>
+
     </VBox>
 </AnchorPane>

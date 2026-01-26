@@ -8,6 +8,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.security.MessageDigest;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -32,7 +33,7 @@ public class LangileaEditatuController {
         txtAbizena.setText(l.getAbizena());
         txtNan.setText(l.getNan());
         txtErabiltzaileIzena.setText(l.getErabiltzaileIzena());
-        txtPasahitza.setText(l.getPasahitza());
+        txtPasahitza.setText("");
         chkGerentea.setSelected(l.isGerentea());
         txtHelbidea.setText(l.getHelbidea());
         txtLangileKodea.setText(String.valueOf(l.getLangileKodea()));
@@ -42,7 +43,7 @@ public class LangileaEditatuController {
     @FXML
     private void gorde() {
 
-        String sql = """ 
+        String sql = """
             UPDATE langileak SET 
                 izena=?, 
                 abizena=?, 
@@ -67,11 +68,13 @@ public class LangileaEditatuController {
                 return;
             }
 
+            String pasahitzaHashea = hash(txtPasahitza.getText());
+
             pstmt.setString(1, txtIzena.getText());
             pstmt.setString(2, txtAbizena.getText());
             pstmt.setString(3, txtNan.getText());
             pstmt.setString(4, txtErabiltzaileIzena.getText());
-            pstmt.setString(5, txtPasahitza.getText());
+            pstmt.setString(5, pasahitzaHashea);
             pstmt.setBoolean(6, chkGerentea.isSelected());
             pstmt.setString(7, txtHelbidea.getText());
             pstmt.setInt(8, langileKodea);
@@ -90,9 +93,17 @@ public class LangileaEditatuController {
             Stage stage = (Stage) txtIzena.getScene().getWindow();
             stage.close();
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             erakutsiErrorea("Datu-base errorea", "Ezin izan da langilea eguneratu.");
         }
+    }
+
+    private String hash(String value) throws Exception {
+        MessageDigest md = MessageDigest.getInstance("SHA-256");
+        byte[] bytes = md.digest(value.getBytes());
+        StringBuilder sb = new StringBuilder();
+        for (byte b : bytes) sb.append(String.format("%02x", b));
+        return sb.toString();
     }
 
     private void erakutsiErrorea(String titulua, String mezua) {
@@ -102,7 +113,6 @@ public class LangileaEditatuController {
         alert.setContentText(mezua);
         alert.initOwner(txtIzena.getScene().getWindow());
         alert.show();
-
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         stage.setAlwaysOnTop(true);
     }

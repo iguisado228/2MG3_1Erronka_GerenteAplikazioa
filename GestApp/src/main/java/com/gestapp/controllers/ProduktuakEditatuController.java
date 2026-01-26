@@ -5,6 +5,7 @@ import com.gestapp.modeloa.Produktua;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.sql.Connection;
@@ -32,6 +33,8 @@ public class ProduktuakEditatuController {
     private void gorde() {
         String sql = "UPDATE produktuak SET izena=?, prezioa=?, mota=?, stock=? WHERE id=?";
 
+        Stage owner = (Stage) txtIzena.getScene().getWindow();
+
         try (Connection conn = Konexioa.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
@@ -49,13 +52,17 @@ public class ProduktuakEditatuController {
                 alert.setTitle("Ondo");
                 alert.setHeaderText(null);
                 alert.setContentText("Produktua ondo eguneratu da");
+                alert.initOwner(owner);
+                alert.initModality(Modality.APPLICATION_MODAL);
                 alert.showAndWait();
-                ((Stage) txtIzena.getScene().getWindow()).close();
+                owner.close();
             } else {
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Errorea");
                 alert.setHeaderText(null);
                 alert.setContentText("Ezin izan da produktua eguneratu");
+                alert.initOwner(owner);
+                alert.initModality(Modality.APPLICATION_MODAL);
                 alert.showAndWait();
             }
 
@@ -64,6 +71,8 @@ public class ProduktuakEditatuController {
             alert.setTitle("Errorea");
             alert.setHeaderText(null);
             alert.setContentText("Errorea eguneratzean");
+            alert.initOwner(owner);
+            alert.initModality(Modality.APPLICATION_MODAL);
             alert.showAndWait();
         }
     }

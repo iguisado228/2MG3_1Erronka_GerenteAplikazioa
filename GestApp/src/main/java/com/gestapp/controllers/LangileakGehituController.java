@@ -7,6 +7,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.security.MessageDigest;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -26,9 +27,7 @@ public class LangileakGehituController {
     @FXML
     private void gorde() {
 
-        String sql = "INSERT INTO langileak (" +
-                "langile_kodea, izena, abizena, nan, erabiltzaile_izena, pasahitza, gerentea, helbidea, tpv_sarrera" +
-                ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO langileak (langile_kodea, izena, abizena, nan, erabiltzaile_izena, pasahitza, gerentea, helbidea, tpv_sarrera) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = Konexioa.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -41,12 +40,14 @@ public class LangileakGehituController {
                 return;
             }
 
+            String pasahitzaHashea = hash(txtPasahitza.getText());
+
             pstmt.setInt(1, langileKodea);
             pstmt.setString(2, txtIzena.getText());
             pstmt.setString(3, txtAbizena.getText());
             pstmt.setString(4, txtNan.getText());
             pstmt.setString(5, txtErabiltzaileIzena.getText());
-            pstmt.setString(6, txtPasahitza.getText());
+            pstmt.setString(6, pasahitzaHashea);
             pstmt.setBoolean(7, chkGerentea.isSelected());
             pstmt.setString(8, txtHelbidea.getText());
             pstmt.setBoolean(9, chkTpvSarrera.isSelected());
@@ -56,12 +57,17 @@ public class LangileakGehituController {
             Stage stage = (Stage) txtIzena.getScene().getWindow();
             stage.close();
 
-        } catch (SQLException e) {
-            erakutsiErrorea(
-                    "Datu-base errorea",
-                    "Ezin izan da langilea gorde. Datuak egiaztatu."
-            );
+        } catch (Exception e) {
+            erakutsiErrorea("Datu-base errorea", "Ezin izan da langilea gorde. Datuak egiaztatu.");
         }
+    }
+
+    private String hash(String value) throws Exception {
+        MessageDigest md = MessageDigest.getInstance("SHA-256");
+        byte[] bytes = md.digest(value.getBytes());
+        StringBuilder sb = new StringBuilder();
+        for (byte b : bytes) sb.append(String.format("%02x", b));
+        return sb.toString();
     }
 
     private void erakutsiErrorea(String titulua, String mezua) {
@@ -71,7 +77,6 @@ public class LangileakGehituController {
         alert.setContentText(mezua);
         alert.initOwner(txtIzena.getScene().getWindow());
         alert.show();
-
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         stage.setAlwaysOnTop(true);
     }
